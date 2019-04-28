@@ -22,10 +22,10 @@ public class EnemyAI : MonoBehaviour
     public GameObject bullet;
     public Animator slashAnim;
 
-    //private Transform grid;
     private Vector2 cFly;
-    //private bool facingRight = true;
-    // Use this for initialization
+    private bool facingRight;
+    private Transform player;
+
     void Start()
     {
         if (hop.check)
@@ -42,15 +42,17 @@ public class EnemyAI : MonoBehaviour
         }
         if (slash.check)
         {
-            InvokeRepeating("Slash", (1 / shoot.rate), Random.Range((1 / shoot.rate) * 0.7f, (1 / shoot.rate) * 1.3f));
+            InvokeRepeating("Slash", (1 / slash.rate), Random.Range((1 / slash.rate) * 0.7f, (1 / slash.rate) * 1.3f));
             if (slashAnim == null) Debug.LogWarning("Um inimigo está sem Bullet (Prefab)!");
         }
 
-            //    GameObject g = GameObject.Find("Grid");
-            //if (g == null)
-            //    Debug.Log("Não há um objeto chamado Grid na cena!");
-            //else
-            //    grid = g.GetComponent<Transform>();
+        //    GameObject g = GameObject.Find("Grid");
+        //if (g == null)
+        //    Debug.Log("Não há um objeto chamado Grid na cena!");
+        //else
+        //    grid = g.GetComponent<Transform>();
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
     void FixedUpdate()
@@ -66,33 +68,56 @@ public class EnemyAI : MonoBehaviour
     private void FixFacing(float f)
     {
         if (f >= 0)
+        {
             gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            facingRight = true;
+        }
         else
+        {
             gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+            facingRight = false;
+        }
 
-        //if (facingRight)
-        //    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //else
-        //    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
-    }
+    //if (facingRight)
+    //    gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+    //else
+    //    gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+}
 
     private void Hop()
     {
-        Vector2 d = new Vector2(Random.Range(-1f, 1f), 1f); d = d.normalized; FixFacing(d.x);
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(hop.force * d.x, hop.force * d.y), ForceMode2D.Impulse);
+        if (SeePlayer(10f))
+        {
+            Vector2 d = new Vector2(facingRight ? 1f : -1f, 1f); d = d.normalized;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(hop.force * d.x, hop.force * d.y), ForceMode2D.Impulse);
+        }
+        else
+        {
+            Vector2 d = new Vector2(Random.Range(-1f, 1f), 1f); d = d.normalized; FixFacing(d.x);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(hop.force * d.x, hop.force * d.y), ForceMode2D.Impulse);
+        }
     }
 
     private void Jump()
     {
-        Vector2 d = new Vector2(Random.Range(-0.7f, 0.7f), 1f); d = d.normalized;
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(jump.force * d.x, jump.force * d.y), ForceMode2D.Impulse);
+        if (SeePlayer(10f))
+        {
+            Vector2 d = new Vector2(facingRight ? 0.5f : -0.5f, 1f); d = d.normalized;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(jump.force * d.x, jump.force * d.y), ForceMode2D.Impulse);
+        }
+        else
+        {
+            Vector2 d = new Vector2(Random.Range(-0.7f, 0.7f), 1f); d = d.normalized;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(jump.force * d.x, jump.force * d.y), ForceMode2D.Impulse);
+        }
     }
 
     private void Fly()
     {
-        Vector2 d = new Vector2(4f * Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.2f));
-        d = d.normalized; FixFacing(d.x);
-        gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(fly.force * d.x, fly.force * d.y), ForceMode2D.Impulse);
+        Debug.Log("Fly desativado");
+        //Vector2 d = new Vector2(4f * Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.2f));
+        //d = d.normalized; FixFacing(d.x);
+        //gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(fly.force * d.x, fly.force * d.y), ForceMode2D.Impulse);
     }
 
     private void Shoot()
@@ -105,13 +130,22 @@ public class EnemyAI : MonoBehaviour
 
     private void Slash()
     {
-        slashAnim.Play("sword");
+        if (SeePlayer(3f))
+            slashAnim.SetTrigger("Slash");
     }
 
-    private void CounterFly()
+    private bool SeePlayer(float vision)
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
-            //AddForce(new Vector2(fly.force * cFly.x, fly.force * cFly.y), ForceMode2D.Impulse);
+        float dist = (player.position.x - transform.position.x);
+        if (Mathf.Abs(dist) < vision)
+        {
+            if ((dist > 0 && facingRight) || (dist < 0 && !facingRight))
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
     }
 
     public void Die()
