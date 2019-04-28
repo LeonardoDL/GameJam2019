@@ -11,7 +11,10 @@ public class BulletMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     void Start()
-    { rb = GetComponent<Rigidbody2D>(); }
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity += new Vector2(transform.right.x, transform.right.y) * speed;
+    }
 
     void Awake()
     { Destroy(gameObject, lifetime); }
@@ -26,6 +29,6 @@ public class BulletMovement : MonoBehaviour
         //    firstTime = false;
         //}
 
-        rb.velocity = new Vector2(transform.right.x, transform.right.y) * speed;
+        
     }
 }
