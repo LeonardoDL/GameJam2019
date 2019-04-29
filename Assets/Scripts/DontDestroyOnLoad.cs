@@ -7,6 +7,10 @@ public class DontDestroyOnLoad : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this);
+        GameObject[] gos = GameObject.FindGameObjectsWithTag(gameObject.tag);
+        if (gos.Length < 2)
+            DontDestroyOnLoad(this);
+        else
+            Destroy(gameObject);
     }
 }
