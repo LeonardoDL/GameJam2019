@@ -8,6 +8,7 @@ TagManager:
   - Checkpoint
   - EnemySlash
   - Bullet
+  - PitAlert
   layers:
   - Default
   - TransparentFX
