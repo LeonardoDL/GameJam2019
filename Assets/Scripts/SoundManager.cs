@@ -6,7 +6,8 @@ public class SoundManager : MonoBehaviour
 {
     public AudioClip[] tracks;
     public AudioClip[] effects;
-    public AudioSource audSource;
+    public AudioSource trackSource;
+    public AudioSource effectSource;
 
     private Dictionary<string, AudioClip> tracksTable;
     private Dictionary<string, AudioClip> effectsTable;
@@ -26,26 +27,38 @@ public class SoundManager : MonoBehaviour
 
     public void PlayTrack(int i)
     {
-        audSource.clip = tracks[i];
-        audSource.Play();
+        StopTracks();
+        trackSource.clip = tracks[i];
+        trackSource.Play();
     }
 
     public void PlayTrack(string s)
     {
+        StopTracks();
         AudioClip a = tracksTable[s];
-        audSource.clip = a;
-        audSource.Play();
+        trackSource.clip = a;
+        trackSource.Play();
     }
 
     public void PlayEffect(int i)
     {
-        audSource.clip = effects[i];
-        audSource.Play();
+        effectSource.clip = effects[i];
+        effectSource.Play();
     }
 
     public void PlayEffect(string s)
     {
-        audSource.clip = effectsTable[s];
-        audSource.Play();
+        effectSource.clip = effectsTable[s];
+        effectSource.Play();
+    }
+
+    public void StopTracks()
+    {
+        trackSource.Stop();
+    }
+
+    public void StopEffects()
+    {
+        effectSource.Stop();
     }
 }

@@ -19,6 +19,7 @@ public class Storyboard : MonoBehaviour
         back.sprite = sprites[1];
         nextSpriteTime = Time.time + cooldown;
         i = 1;
+        SoundManager.SM.StopTracks();
     }
 
     public void NextSprite()
@@ -36,7 +37,10 @@ public class Storyboard : MonoBehaviour
             i++;
         }
         else
+        {
+            SoundManager.SM.PlayTrack("Via_Inferna");
             SceneManager.LoadScene(1);
+        }
     }
 
     void Update()

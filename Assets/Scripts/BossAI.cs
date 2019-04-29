@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossAI : MonoBehaviour
 {
@@ -238,6 +239,7 @@ public class BossAI : MonoBehaviour
     {
         //Instantiate(collectible, gameObject.transform.position, Quaternion.identity, grid);
         Destroy(gameObject);
+        SceneManager.LoadScene(4);
         Debug.Log("You Win");
     }
 
