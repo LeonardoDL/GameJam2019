@@ -8,16 +8,35 @@ public class UpgradeManager : MonoBehaviour
     public GameObject[] prefabs;
 
     [SerializeField] private int coins;
-    [SerializeField] private bool[] upgrades;
+    [SerializeField] private static bool[] upgrades;
+    [SerializeField] private static bool[] bought;
     // Start is called before the first frame update
     void Start()
     {
+        if (upgrades == null)
+        {
+            upgrades = new bool[4];
+            upgrades[0] = true;
+            upgrades[1] = false;
+            upgrades[2] = false;
+            upgrades[3] = false;
+        }
+
+        if (bought == null)
+        {
+            bought = new bool[4];
+            bought[0] = true;
+            bought[1] = false;
+            bought[2] = false;
+            bought[3] = false;
+        }
+
         if (upgrades[0])
         {
             upgrades[1] = false;
             upgrades[2] = false;
             GetComponent<Shoot>().bulletPrefab = prefabs[0];
-            GetComponent<Shoot>().cooldown = 0.3f;
+            GetComponent<Shoot>().cooldown = 0.4f;
             GetComponent<SpriteRenderer>().sprite = sprites[0];
         }
 
@@ -51,14 +70,26 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public bool HasUpgrade(int i)
     {
-        return upgrades[i];
+        if (bought == null)
+        {
+            bought = new bool[4];
+            bought[0] = true;
+            bought[1] = false;
+            bought[2] = false;
+            bought[3] = false;
+        }
+
+        return bought[i];
+    }
+
+    public void Upgrade(int i)
+    {
+        upgrades[i] = true;
+        if (i == 0) { upgrades[1] = false; upgrades[2] = false; }
+        if (i == 1) { upgrades[0] = false; upgrades[2] = false; }
+        if (i == 2) { upgrades[0] = false; upgrades[1] = false; }
+        bought[i] = true;
     }
 }
