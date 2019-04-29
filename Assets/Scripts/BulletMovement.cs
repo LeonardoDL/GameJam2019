@@ -6,6 +6,7 @@ public class BulletMovement : MonoBehaviour
 {
     public float speed = 4f;
     public float lifetime = 10f;
+    public int damage = 1;
     //public float damage = 10f;
     //private bool firstTime = true;
     private Rigidbody2D rb;
@@ -32,8 +33,13 @@ public class BulletMovement : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
-    }
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    Destroy(gameObject);
+    //}
+
+    //void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    Destroy(gameObject);
+    //}
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerLifeController : MonoBehaviour {
 
@@ -84,10 +85,14 @@ public class PlayerLifeController : MonoBehaviour {
     // Move player to spawn
     public void DiedAnimationEnded()
     {
+        Debug.Log("Morreu");
+        Money.Increment();
         transform.position = lastCheckpoint;
         //gameObject.GetComponent<ManageFollowers>().RestartAllFollowers(); //Reseta as posições dos coletáveis seguidores
         dead = false;
         //animator.SetBool("Died", false);
+
+        SceneManager.LoadScene(3);
     }
 
     // Returns if the player is dead (respawning)

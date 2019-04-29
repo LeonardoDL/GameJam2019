@@ -5,15 +5,29 @@ using UnityEngine;
 public class EnemyLife : MonoBehaviour
 {
     private EnemyAI ai;
+    public int deathYHeight;
 
     void Start()
     {
         ai = GetComponent<EnemyAI>();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.collider.tag == "Bullet")
+        if (collider.tag == "Bullet")
+        {
+            ai.Die();
+            Destroy(collider.gameObject);
+        }
+        if (collider.tag == "SlashPlayer")
+        {
+            ai.Die();
+        }
+    }
+
+    void Update()
+    {
+        if (transform.position.y <= deathYHeight)
         {
             ai.Die();
         }

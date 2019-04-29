@@ -16,8 +16,11 @@ public class BossAI : MonoBehaviour
 
     private Vector2 cFly;
     private bool facingRight;
-    private bool mad;
+    [SerializeField] private bool mad;
     private Transform player;
+
+    private float shortVision = 5f;
+    private float longVision = 10f;
 
     void Start()
     {
@@ -85,14 +88,14 @@ public class BossAI : MonoBehaviour
 
     private void Hop()
     {
-        if (SeePlayer(15f) && !SeePit(6f))
+        if (SeePlayer(longVision) && !SeePit(shortVision))
         {
             Vector2 d = new Vector2(facingRight ? 1f : -1f, 1f); d = d.normalized;
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(hop.force * d.x, hop.force * d.y), ForceMode2D.Impulse);
         }
         else
         {
-            if (!SeePit(6f))
+            if (!SeePit(shortVision))
             {
                 Vector2 d = new Vector2(Random.Range(-1f, 1f), 1f); d = d.normalized; FixFacing(d.x);
                 gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(hop.force * d.x, hop.force * d.y), ForceMode2D.Impulse);
@@ -107,7 +110,7 @@ public class BossAI : MonoBehaviour
 
     private void SecHop()
     {
-        if (SeePlayer(15f) && !SeePit(6f))
+        if (SeePlayer(longVision) && !SeePit(shortVision))
         {
             Vector2 d = new Vector2(facingRight ? 1f : -1f, 1f); d = d.normalized; FixFacing(d.x);
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(hop.force * d.x, hop.force * d.y), ForceMode2D.Impulse);
@@ -116,7 +119,7 @@ public class BossAI : MonoBehaviour
 
     private void MadHop()
     {
-        if (mad && (SeePlayer(15f) && !SeePit(6f)))
+        if (mad && (SeePlayer(longVision) && !SeePit(shortVision)))
         {
             Vector2 d = new Vector2(player.position.x - transform.position.x, player.position.y - transform.position.y); d = d.normalized; FixFacing(d.x);
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(4f * hop.force * d.x, 4f * hop.force * d.y), ForceMode2D.Impulse);
@@ -125,7 +128,7 @@ public class BossAI : MonoBehaviour
 
     private void SecMadHop()
     {
-        if (mad && (SeePlayer(15f) && !SeePit(6f)))
+        if (mad && (SeePlayer(longVision) && !SeePit(shortVision)))
         {
             Vector2 d = new Vector2(player.position.x - transform.position.x, player.position.y - transform.position.y); d = d.normalized; FixFacing(d.x);
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(4f * hop.force * d.x, 4f * hop.force * d.y), ForceMode2D.Impulse);
@@ -141,14 +144,14 @@ public class BossAI : MonoBehaviour
             return;
         }
 
-        if (SeePlayer(15f) && !SeePit(6f))
+        if (SeePlayer(longVision) && !SeePit(shortVision))
         {
             Vector2 d = new Vector2(facingRight ? 0.5f : -0.5f, 1f); d = d.normalized; FixFacing(d.x);
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(jump.force * d.x, jump.force * d.y), ForceMode2D.Impulse);
         }
         else
         {
-            if (!SeePit(6f))
+            if (!SeePit(shortVision))
             {
                 Vector2 d = new Vector2(Random.Range(-0.7f, 0.7f), 1f); d = d.normalized; FixFacing(d.x);
                 gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(jump.force * d.x, jump.force * d.y), ForceMode2D.Impulse);
@@ -179,7 +182,7 @@ public class BossAI : MonoBehaviour
 
     private void Slash()
     {
-        if (SeePlayer(6f))
+        if (SeePlayer(shortVision))
         {
             slashAnim.SetTrigger("Slash");
         }

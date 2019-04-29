@@ -29,7 +29,7 @@ public class Shoot : MonoBehaviour
         {
             bullet = Instantiate(bulletPrefab, position, rotation);
             Vector3 r = rotation.eulerAngles;
-            bullet.GetComponent<Rigidbody2D>().velocity = rb.velocity * .17f;
+            //bullet.GetComponent<Rigidbody2D>().velocity = rb.velocity * .17f;
             //bullet.GetComponent<Rigidbody2D>().AddForce(
             //    new Vector2(launchForce * r.x, launchForce * r.y),
             //    ForceMode2D.Impulse);

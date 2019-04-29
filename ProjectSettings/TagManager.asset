@@ -9,6 +9,8 @@ TagManager:
   - EnemySlash
   - Bullet
   - PitAlert
+  - ItemSpot
+  - SlashPlayer
   layers:
   - Default
   - TransparentFX
