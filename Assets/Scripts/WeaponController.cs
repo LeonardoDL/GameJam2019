@@ -8,17 +8,21 @@ public class WeaponController : MonoBehaviour {
     public Transform weapon, player, firePoint;
     //public PlayerLifeController playerLife;
     public float rotationSpeed = 3f;
+    public Camera cam;
     
 
 	// Update is called once per frame
 	void Update () {
         //if (!playerLife.GetDead()) {
             // Calculates direction from object to cursor
-            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - weapon.position;
-            direction.Normalize();
+            Vector3 d = cam.ScreenToWorldPoint(Input.mousePosition) - weapon.position;
+            d.Normalize();
+
+            Vector2 direction = new Vector2(d.x, d.y);
+        direction.Normalize();
 
             // Verify player orientation
-            float angle = (player.transform.localScale.x <= -1) ?
+        float angle = (player.transform.localScale.x <= -1) ?
                 Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg
                 : Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
