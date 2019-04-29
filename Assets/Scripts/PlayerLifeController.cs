@@ -73,10 +73,10 @@ public class PlayerLifeController : MonoBehaviour {
     {
         if (!dead) {
             dead = true;
-            //gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
             //audioSource.Play();
             //animator.SetBool("Died", true);
-            //gameObject.GetComponent<PlayerMovement>().ClearMovement();
+            gameObject.GetComponent<PlayerMovement>().ClearMovement();
         }
         DiedAnimationEnded();
     }

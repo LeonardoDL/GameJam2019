@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2911907043923364295}
   - component: {fileID: 897571197273966489}
   - component: {fileID: 554311675927816202}
+  - component: {fileID: -4450195924523044284}
   m_Layer: 8
   m_Name: BulletHolder
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +69,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   lifetime: 10
+--- !u!61 &-4450195924523044284
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3349039627733696233}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0027166232, y: 0.06513631}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.081804216, y: 0.08808972}
+  m_EdgeRadius: 0
 --- !u!1 &3806529560541797601
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +108,7 @@ GameObject:
   - component: {fileID: 1033385880769949570}
   m_Layer: 8
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

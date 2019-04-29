@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 84466697}
   - component: {fileID: 84466698}
   - component: {fileID: 84466696}
+  - component: {fileID: 84466699}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -276,6 +277,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.509308, y: -0.1434704}
   m_Size: {x: 0.61097836, y: 1.6945469}
   m_Direction: 0
+--- !u!114 &84466699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84466693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68444c56287967041b1fee95fdfa63d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &91249281
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,6 +851,7 @@ GameObject:
   - component: {fileID: 586494343}
   - component: {fileID: 586494342}
   - component: {fileID: 586494341}
+  - component: {fileID: 586494345}
   m_Layer: 8
   m_Name: Demon
   m_TagString: Enemy
@@ -981,6 +995,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &586494345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586494339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68444c56287967041b1fee95fdfa63d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &660632276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,6 +2287,7 @@ GameObject:
   - component: {fileID: 1434991332}
   - component: {fileID: 1434991331}
   - component: {fileID: 1434991330}
+  - component: {fileID: 1434991335}
   m_Layer: 8
   m_Name: Gargoyle
   m_TagString: Enemy
@@ -2420,6 +2447,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1434991335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434991328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68444c56287967041b1fee95fdfa63d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1498096458
 GameObject:
   m_ObjectHideFlags: 0
