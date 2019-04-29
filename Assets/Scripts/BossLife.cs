@@ -12,7 +12,7 @@ public class BossLife : MonoBehaviour
     void Start()
     {
         ai = GetComponent<BossAI>();
-        lifePoints = totalLifePoints;
+        lifePoints = totalLifePoints + Money.times * 2;
     }
 
     void OnTriggerEnter2D(Collider2D collider)

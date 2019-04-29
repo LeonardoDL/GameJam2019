@@ -11,6 +11,7 @@ TagManager:
   - PitAlert
   - ItemSpot
   - SlashPlayer
+  - SoundManager
   layers:
   - Default
   - TransparentFX

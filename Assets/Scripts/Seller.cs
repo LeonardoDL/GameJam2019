@@ -26,7 +26,7 @@ public class Seller : MonoBehaviour
             if (Money.value < im.price)
             {
                 g.GetComponent<Collider2D>().enabled = false;
-                im.enabled = false;
+                //im.enabled = false;
             }
         }
     }
