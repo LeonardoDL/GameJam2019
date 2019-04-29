@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
             hMove = Input.GetAxisRaw("Horizontal") * rSpeed;
             if (Input.GetButtonDown("Jump"))
             {
-                SoundManager.SM.PlayTrack("Via_Inferna");
+                //SoundManager.SM.PlayTrack("Via_Inferna");
                 jump = true;
                 //animator.SetBool("Jumping", true);
                 //audioSource.Play();

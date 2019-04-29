@@ -28,6 +28,7 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        facingRight = true;
         if (hop.check)
             InvokeRepeating("Hop", 1f, Random.Range((1 / hop.rate)*0.7f, (1 / hop.rate) * 1.3f));
         if (jump.check)
@@ -131,7 +132,9 @@ public class EnemyAI : MonoBehaviour
     private void Slash()
     {
         if (SeePlayer(3f))
+        {
             slashAnim.SetTrigger("Slash");
+        }
     }
 
     private bool SeePlayer(float vision)
@@ -140,12 +143,21 @@ public class EnemyAI : MonoBehaviour
         if (Mathf.Abs(dist) < vision)
         {
             if ((dist > 0 && facingRight) || (dist < 0 && !facingRight))
+            {
+                GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f);
                 return true;
+            }
             else
+            {
+                GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
                 return false;
+            }
         }
         else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
             return false;
+        }
     }
 
     public void Die()
