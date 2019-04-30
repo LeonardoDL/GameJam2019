@@ -46,25 +46,9 @@ public class PlayerLifeController : MonoBehaviour {
     // Enemies and hazards and stomp
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log(collision.collider.tag);
-
         Collider2D collider = collision.collider;
         string tag = collider.tag;
-        
 
-        //if (tag == "Enemy")
-        //{
-        //    foreach(ContactPoint2D point in collision.contacts)
-        //    {
-        //        //Debug.DrawLine(point.point, point.point + point.normal, Color.red, 10);
-        //        //Debug.Log(point.normal.x + "," + point.normal.y);
-        //        if (point.normal.y >= 0.9f)
-        //        {
-        //            collider.gameObject.GetComponent<EnemyAI>().Die();
-        //        }
-        //    }
-            
-        //}
         if (tag == "EnemySlash")
             RespawnPlayer();
     }

@@ -199,18 +199,18 @@ public class BossAI : MonoBehaviour
         {
             if ((dist > 0 && facingRight) || (dist < 0 && !facingRight))
             {
-                GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f);
+                //GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f);
                 return true;
             }
             else
             {
-                GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+                //GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
                 return false;
             }
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            //GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
             return false;
         }
     }
@@ -226,7 +226,7 @@ public class BossAI : MonoBehaviour
             {
                 if ((dist > 0 && facingRight) || (dist < 0 && !facingRight))
                 {
-                    GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
+                    //GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0f);
                     return true;
                 }
             }

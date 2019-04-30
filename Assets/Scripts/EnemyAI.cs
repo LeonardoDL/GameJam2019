@@ -115,10 +115,17 @@ public class EnemyAI : MonoBehaviour
 
     private void Fly()
     {
-        Debug.Log("Fly desativado");
-        //Vector2 d = new Vector2(4f * Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.2f));
-        //d = d.normalized; FixFacing(d.x);
-        //gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(fly.force * d.x, fly.force * d.y), ForceMode2D.Impulse);
+        if (SeePlayer(15f))
+        {
+            Vector2 d = new Vector2(player.position.x - transform.position.x, player.position.y - transform.position.y); d = d.normalized; FixFacing(d.x);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(2f * fly.force * d.x, 2f * fly.force * d.y), ForceMode2D.Impulse);
+        }
+        else
+        {
+            Vector2 d = new Vector2(4f * Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.2f));
+            d = d.normalized; FixFacing(d.x);
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(fly.force * d.x, fly.force * d.y), ForceMode2D.Impulse);
+        }
     }
 
     private void Shoot()
@@ -126,7 +133,7 @@ public class EnemyAI : MonoBehaviour
         //Vector2 d = new Vector2(4f * Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.2f));
         //d = d.normalized;
         GameObject b = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
-        b.GetComponent<BulletMovement>().speed = shoot.force;
+        //b.GetComponent<BulletMovement>().speed = shoot.force;
     }
 
     private void Slash()
@@ -144,18 +151,18 @@ public class EnemyAI : MonoBehaviour
         {
             if ((dist > 0 && facingRight) || (dist < 0 && !facingRight))
             {
-                GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f);
+                //GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f);
                 return true;
             }
             else
             {
-                GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+                //GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
                 return false;
             }
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+            //GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
             return false;
         }
     }
